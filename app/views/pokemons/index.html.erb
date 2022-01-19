@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Pokemons</h1>
+<%if @from && @per_page %>
+<div id="nav">
+<%= link_to "<- PREVIOUS", pokemons_path(from:  @from.to_i - @per_page.to_i, per_page: @per_page), style: "float:left;" %>
+<%= link_to "NEXT ->", pokemons_path(from:  @from.to_i + @per_page.to_i , per_page: @per_page), style: "float:right;" %>
+<br/>
+</div>
+<% end %>
+<div id="pokemons" style="text-align: center;">
+  <% @pokemons.each do |pokemon| %>
+    <%= render pokemon %>
+    <p>
+      <%= link_to "Show this pokemon", pokemon %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New pokemon", new_pokemon_path %>
